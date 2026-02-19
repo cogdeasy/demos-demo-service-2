@@ -87,6 +87,6 @@ def divide(a: int = Query(...), b: int = Query(...)):
         raise HTTPException(status_code=400, detail="Division by zero")
 
 
-if __name__== "__main__":
+if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host=settings.host, port=settings.port)
