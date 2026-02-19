@@ -45,3 +45,21 @@ class MathOperations:
         if not settings.math_subtraction_enabled:
             raise RuntimeError("Subtraction is disabled")
         return a - b
+
+    @staticmethod
+    def multiply(a: int, b: int) -> int:
+        """Multiply two numbers.
+        
+        Args:
+            a: First number
+            b: Second number
+            
+        Returns:
+            Product of a and b
+            
+        Raises:
+            RuntimeError: If multiplication is disabled
+        """
+        if not settings.math_multiplication_enabled:
+            raise RuntimeError("Multiplication is disabled")
+        return a * b

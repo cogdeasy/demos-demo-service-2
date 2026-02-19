@@ -26,6 +26,7 @@ def health_check():
         "features": {
             "addition": settings.math_addition_enabled,
             "subtraction": settings.math_subtraction_enabled,
+            "multiplication": settings.math_multiplication_enabled,
         }
     }
 
@@ -61,6 +62,24 @@ def subtract(a: int = Query(...), b: int = Query(...)):
     """
     try:
         result = math.subtract(a, b)
+        return {"result": result}
+    except RuntimeError as e:
+        raise HTTPException(status_code=403, detail=str(e))
+
+
+@app.post("/api/math/multiply")
+def multiply(a: int = Query(...), b: int = Query(...)):
+    """Multiply two numbers.
+    
+    Args:
+        a: First number
+        b: Second number
+        
+    Returns:
+        Product of a and b
+    """
+    try:
+        result = math.multiply(a, b)
         return {"result": result}
     except RuntimeError as e:
         raise HTTPException(status_code=403, detail=str(e))
