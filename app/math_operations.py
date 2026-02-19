@@ -45,3 +45,24 @@ class MathOperations:
         if not settings.math_subtraction_enabled:
             raise RuntimeError("Subtraction is disabled")
         return a - b
+
+    @staticmethod
+    def divide(a: int, b: int) -> float:
+        """Divide two numbers.
+        
+        Args:
+            a: First number
+            b: Second number
+            
+        Returns:
+            Quotient of a and b as a float
+            
+        Raises:
+            RuntimeError: If division is disabled
+            ArithmeticError: If dividing by zero
+        """
+        if not settings.math_division_enabled:
+            raise RuntimeError("Division is disabled")
+        if b == 0:
+            raise ArithmeticError("Division by zero")
+        return a / b

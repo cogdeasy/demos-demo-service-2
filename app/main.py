@@ -26,6 +26,7 @@ def health_check():
         "features": {
             "addition": settings.math_addition_enabled,
             "subtraction": settings.math_subtraction_enabled,
+            "division": settings.math_division_enabled,
         }
     }
 
@@ -64,6 +65,26 @@ def subtract(a: int = Query(...), b: int = Query(...)):
         return {"result": result}
     except RuntimeError as e:
         raise HTTPException(status_code=403, detail=str(e))
+
+
+@app.post("/api/math/divide")
+def divide(a: int = Query(...), b: int = Query(...)):
+    """Divide two numbers.
+    
+    Args:
+        a: First number
+        b: Second number
+        
+    Returns:
+        Quotient of a and b as a float
+    """
+    try:
+        result = math.divide(a, b)
+        return {"result": result}
+    except RuntimeError as e:
+        raise HTTPException(status_code=403, detail=str(e))
+    except ArithmeticError:
+        raise HTTPException(status_code=400, detail="Division by zero")
 
 
 if __name__ == "__main__":

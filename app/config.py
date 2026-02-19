@@ -15,9 +15,10 @@ class Settings(BaseSettings):
     # Feature toggles - mirror demos-demo-library config
     math_addition_enabled: bool = True
     math_subtraction_enabled: bool = False
+    math_division_enabled: bool = False
     
     # Library version tracking
-    library_version: str = "1.0.0"
+    library_version: str = "1.3.0"
     
     class Config:
         env_file = ".env"
